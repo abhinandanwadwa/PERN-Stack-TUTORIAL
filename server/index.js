@@ -18,11 +18,11 @@ app.post('/todos', async (req, res) => {
         
         // TIME FOR SOME ACTUAL QUERIES BABY
         const newTodo = await pool.query(
-            "INSERT INTO todo (description) VALUES($1)",
+            "INSERT INTO todo (description) VALUES($1) RETURNING *",
             [description]
             );
 
-        return res.status(200).json({ success: "A new TODO Added successfully!!" });
+        return res.status(200).json({ success: "A new TODO Added successfully!!", info: newTodo });
         
     } catch (error) {
         console.error(error.message);
