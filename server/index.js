@@ -27,9 +27,19 @@ app.post('/todos', async (req, res) => {
     } catch (error) {
         console.error(error.message);
     }
-})
+});
 
 // Get ALl TODOS
+app.get("/todos", async (req, res) => {
+    try {
+
+        const allTodos = await pool.query("SELECT  * FROM todo");  // We don't have to write "RETURNING *" here bcoz the purpose of this query is to return the data back so it already involves this keyword
+        res.json(allTodos.rows);
+        
+    } catch (error) {
+        console.error(error.message);
+    }
+});
 
 // Get A TODO
 
