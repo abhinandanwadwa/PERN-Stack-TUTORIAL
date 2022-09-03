@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const pool = require('./db');
 
 // Middlewares:
 app.use(cors());
